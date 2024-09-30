@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        h2 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .endpoint {
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Documentation</h1>
+
+    <div class="endpoint">
+        <h2>POST /signup</h2>
+        <p>Registers a new user.</p>
+        <h3>Request Body:</h3>
+        <pre>
+{
+    "Email": "user@example.com",
+    "Password": "password123"
+}
+        </pre>
+        <h3>Response:</h3>
+        <pre>
+{
+    "message": "User created successfully!",
+    "Email": "user@example.com",
+    "Password": "password123"
+}
+        </pre>
+    </div>
+
+    <div class="endpoint">
+        <h2>POST /login</h2>
+        <p>Logs in an existing user.</p>
+        <h3>Request Body:</h3>
+        <pre>
+{
+    "Email": "user@example.com",
+    "Password": "password123"
+}
+        </pre>
+        <h3>Response:</h3>
+        <pre>
+{
+    "success": true,
+    "message": "Login successful"
+}
+        </pre>
+    </div>
+
+    <div class="endpoint">
+        <h2>POST /add</h2>
+        <p>Adds new data entry with a title.</p>
+        <h3>Request Body:</h3>
+        <pre>
+{
+    "Title": "My new entry"
+}
+        </pre>
+        <h3>Response:</h3>
+        <pre>
+{
+    "success": true,
+    "data": {
+        "ID": 1,
+        "CreatedAt": "2024-09-30T12:00:00Z",
+        "UpdatedAt": "2024-09-30T12:00:00Z",
+        "DeletedAt": null,
+        "Title": "My new entry",
+        "Body": []
+    }
+}
+        </pre>
+    </div>
+
+    <div class="endpoint">
+        <h2>GET /add</h2>
+        <p>Retrieves all data entries.</p>
+        <h3>Response:</h3>
+        <pre>
+{
+    "data": [
+        {
+            "ID": 1,
+            "Title": "My new entry",
+            "Body": []
+        }
+    ]
+}
+        </pre>
+    </div>
+
+    <div class="endpoint">
+        <h2>GET /data/&lt;dataName&gt;/body</h2>
+        <p>Retrieves the body of a specific data entry by title.</p>
+        <h3>Path Parameters:</h3>
+        <pre>
+dataName: The title of the data entry
+        </pre>
+        <h3>Response:</h3>
+        <pre>
+[
+    "Item 1",
+    "Item 2"
+]
+        </pre>
+    </div>
+
+    <div class="endpoint">
+        <h2>POST /add/&lt;dataName&gt;/body</h2>
+        <p>Adds an item to the body of a specific data entry by title.</p>
+        <h3>Path Parameters:</h3>
+        <pre>
+dataName: The title of the data entry
+        </pre>
+        <h3>Request Body:</h3>
+        <pre>
+{
+    "Body": "New body item"
+}
+        </pre>
+        <h3>Response:</h3>
+        <pre>
+{
+    "success": true,
+    "Body": [
+        "Item 1",
+        "Item 2",
+        "New body item"
+    ]
+}
+        </pre>
+    </div>
+
+    <div class="endpoint">
+        <h2>PUT /data/&lt;dataName&gt;/body/&lt;index&gt;</h2>
+        <p>Edits a specific item in the body of a data entry by index.</p>
+        <h3>Path Parameters:</h3>
+        <pre>
+dataName: The title of the data entry
+index: The index of the item to edit
+        </pre>
+        <h3>Request Body:</h3>
+        <pre>
+{
+    "Body": "Updated body item"
+}
+        </pre>
+        <h3>Response:</h3>
+        <pre>
+{
+    "success": true,
+    "Body": [
+        "Item 1",
+        "Updated body item"
+    ]
+}
+        </pre>
+    </div>
+
+    <div class="endpoint">
+        <h2>DELETE /data/&lt;dataName&gt;/body/&lt;index&gt;</h2>
+        <p>Deletes a specific item in the body of a data entry by index.</p>
+        <h3>Path Parameters:</h3>
+        <pre>
+dataName: The title of the data entry
+index: The index of the item to delete
+        </pre>
+        <h3>Response:</h3>
+        <pre>
+{
+    "success": true,
+    "Body": [
+        "Item 1"
+    ]
+}
+        </pre>
+    </div>
+
+</body>
+</html>
